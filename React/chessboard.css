@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text&display=swap');
+
+#layout {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    display: flex;
+
+    background: rgb(37, 33, 43);
+    color: #efefef;
+
+    font-family: 'Golos Text', sans-serif;
+}
+
+#layout * {
+    margin: 0px;
+    padding: 0px;
+
+    box-sizing: border-box;
+}
+
+#details {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+}
+
+#panel {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    width: 100%;
+
+    justify-content: space-around;
+
+    font-size: 28px !important;
+
+    background: #efefef0a;
+    padding: 5px;
+}
+#panel span {
+    cursor: pointer;
+}
+
+.player p {
+    font-size: 20px;
+
+    display: flex;
+    align-items: flex-end;
+
+    gap: 10px;
+
+    white-space: nowrap;
+}
+.player p > p {
+    width: 200px;
+    overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
+}
+.player p span {
+    font-size: 16px;
+    opacity: 0.6;
+}
+
+.player .time {
+    opacity: 0.9;
+    font-size: 18px;
+}
+.player .time#speedup {
+    color: #ff6060;
+}
+
+@media screen and (max-width: 500px) {
+    #details {
+        display: none !important;
+    }
+}
+@media screen and (min-width: 500px) {
+    .mobile-details {
+        display: none !important;
+    }
+}

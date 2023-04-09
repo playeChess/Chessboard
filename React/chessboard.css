@@ -1,18 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Golos+Text&display=swap');
 
-#layout {
+#overflow {
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0px;
     left: 0px;
+}
+
+#layout {
+    position: relative;
+    top: 0px;
+    left: 0px;
+
+    min-height: calc(100% - 60px);
+    min-width: calc(100% - 60px);
 
     display: flex;
+    gap: 30px;
 
-    background: rgb(37, 33, 43);
+    background: #25212b;
     color: #efefef;
 
     font-family: 'Golos Text', sans-serif;
+
+    padding: 30px;
+}
+
+*::-webkit-scrollbar {
+    background: #efefef0a;
+}
+* {
+    scrollbar-color: #efefef0a;
 }
 
 #layout * {
@@ -28,7 +47,7 @@
     width: 400px;
 }
 
-#panel {
+#details #panel {
     display: flex;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -42,11 +61,73 @@
     background: #efefef0a;
     padding: 5px;
 }
-#panel span {
+#details #panel span {
     cursor: pointer;
 }
 
-.player p {
+#details #history {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    padding-right: 0px;
+    gap: 5px;
+    font-size: 16px;
+    position: relative;
+}
+#details #history ul {
+    max-height: 260px;
+    overflow-y: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+} 
+#details #history::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background: rgb(2,0,36);
+    background: linear-gradient(0deg, rgba(2,0,36,0) 0%, rgba(37,33,43,1) 83%);
+    top: 10px;
+    left: 0px;
+}
+#details #history::before {
+    content: "";
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(37,33,43,1) 83%);
+    bottom: 10px;
+    left: 0px;
+}
+#details #history li {
+    display: flex;
+}
+#details #history li div {
+    display: flex;
+    width: calc(100% - 50px);
+    position: relative;
+}
+#details #history li div span {
+    display: block;
+    width: 50%;
+    padding: 2px;
+}
+#details #history li > span:nth-child(1) {
+    opacity: 0.7;
+    display: block;
+
+    width: 50px;
+}
+
+#details .current {
+    background: #80ecff;
+    color: #25212b;
+    font-weight: bold;
+}
+
+#details .player p {
     font-size: 20px;
 
     display: flex;
@@ -56,32 +137,56 @@
 
     white-space: nowrap;
 }
-.player p > p {
+#details .player p > p {
     width: 200px;
     overflow: hidden;
     display: block;
     text-overflow: ellipsis;
 }
-.player p span {
+#details .player p span {
     font-size: 16px;
     opacity: 0.6;
 }
+#details .player p span:nth-child(2) {
+    display: block;
+    width: 100px;
+}
 
-.player .time {
+#details .player .time {
     opacity: 0.9;
     font-size: 18px;
 }
-.player .time#speedup {
+#details .player .time#speedup {
     color: #ff6060;
 }
 
-@media screen and (max-width: 500px) {
-    #details {
+@media screen and (max-width: 1000px) {
+    #details, #details * {
         display: none !important;
     }
 }
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 1000px) {
     .mobile-details {
         display: none !important;
     }
+}
+
+/*
+Chessboard
+*/
+
+#chessboard {
+    width: 100%;
+    max-height: calc(100vh - 60px);
+    aspect-ratio: 1 / 1 !important;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+}
+#game {
+    height: 100%;
+    max-height: calc(100vh - 60px);
+    min-height: 400px;
+    aspect-ratio: 1 / 1 !important;
+    background: green;
 }

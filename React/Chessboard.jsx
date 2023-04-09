@@ -32,40 +32,49 @@ function displayTime(t, p) {
     </span>
 }
 
-export const Chessboard = ({ timer, history, details, mouvementsEnabled, orientation, gameMode, startingPosition, colorSheet, chat }) => (
-    <div id="layout">
-        <div class="mobile-details" id="history">
-            
-        </div>
-        <div class="mobile-details" id="player1">
-            
-        </div>
-        <div id="chessboard">
+export const Chessboard = ({ details, mouvementsEnabled, orientation, gameMode, startingPosition, colorSheet, chat }) => (
+    <div id="overflow">
+        <div id="layout">
+            <div class="mobile-details" id="history">
+                
+            </div>
+            <div class="mobile-details" id="player1">
+                
+            </div>
+            <div id="chessboard">
+                <div id="game">
 
-        </div>
-        <div class="mobile-details" id="player2">
-            
-        </div>
-        <div id="details" style={{ display: isDisplayed(details) ? 'none' : 'flex' }}>
-            <div class="player">
-                <p><p>{details.players[0].name}</p> <span>Rating: {details.players[0].elo}</span> {displayTime(details.time, details.players[0].time)}</p>
+                </div>
             </div>
-            <div id="history">
-                <ul>
-                </ul>
+            <div class="mobile-details" id="player2">
+                
             </div>
-            <div id="panel">
-            <span class="material-icons">undo</span><span>½</span><span class="material-icons">flag</span>
+            <div id="details" style={{ display: isDisplayed(details) ? 'none' : 'flex' }}>
+                <div class="player">
+                    <p><p>{details.players[0].name}</p> <span>Rating: {details.players[0].elo}</span> {displayTime(details.time, details.players[0].time)}</p>
+                </div>
+                <div id="history">
+                    <ul>
+
+                    {details.history.map((h, i) => (
+                        <li><span>{i+1}.</span> <div><span className={ (details.currentMove[0] == i && details.currentMove[1] == 0 ? 'current' : '') }>{h[0]||''}</span> <span className={ (details.currentMove[0] == i && details.currentMove[1] == 1 ? 'current' : '') }>{h[1]||''}</span></div></li>
+                    ))}
+
+                    </ul>
+                </div>
+                <div id="panel">
+                <span class="material-icons">undo</span><span>½</span><span class="material-icons">flag</span>
+                </div>
+                <div class="player">
+                    <p><p>{details.players[1].name}</p> <span>Rating: {details.players[1].elo}</span> {displayTime(details.time, details.players[1].time)}</p>
+                </div>
             </div>
-            <div class="player">
-                <p><p>{details.players[1].name}</p> <span>Rating: {details.players[1].elo}</span> {displayTime(details.time, details.players[1].time)}</p>
+            <div class="mobile-details" id="panel">
+                
             </div>
-        </div>
-        <div class="mobile-details" id="panel">
-            
-        </div>
-        <div class="mobile-details" id="chat">
-            
+            <div class="mobile-details" id="chat">
+                
+            </div>
         </div>
     </div>
 );
@@ -85,7 +94,7 @@ Chessboard.propTypes = {
 Chessboard.defaultProps = {
     timer: false,
     history: false,
-    details: { "history": [], "players": [{ "name": "Anonymous1 player test name", "elo": 0, "time": 12010 }, { "name": "Anonymous2", "elo": 0, "time": 0 }], "increment": 0, "time": 18000 },
+    details: { "history": [['a2', 'b5'], ['a2', 'b5'], ['a2', 'b5'],['a2', 'b5'],['a2', 'b5'],['a2', 'b5'],['a2', 'b5'],['a2', 'b5'],['a2', 'b5'],['a2', 'b5'],['a2', 'b5'],['a2', 'b5'],['a2', 'b5'], ['a3']], "players": [{ "name": "Anonymous1 player test name", "elo": 0, "time": 12010 }, { "name": "Anonymous2", "elo": 2670, "time": 0 }], "increment": 0, "time": 18000, "currentMove": [2, 1] },
     mouvementsEnabled: true, 
     orientation: "w",
     gameMode: "IRL",

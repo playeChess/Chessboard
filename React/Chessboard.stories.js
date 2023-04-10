@@ -1,11 +1,10 @@
 import { within, userEvent } from '@storybook/testing-library';
 
-import { Chessboard } from './Chessboard';
+import Chessboard from './Chessboard';
 
 export default {
   title: 'Chessboard',
   component: Chessboard,
-  tags: ['autodocs'],
   parameters: {
     layout: 'centered',
   },

@@ -3,6 +3,7 @@
 #overflow {
     width: 100%;
     height: 100%;
+    
     position: absolute;
     top: 0px;
     left: 0px;
@@ -13,16 +14,16 @@
     top: 0px;
     left: 0px;
 
-    min-height: calc(100% - 60px);
-    min-width: calc(100% - 60px);
+    width: calc(100% - 60px);
+    height: calc(100% - 60px);
+
+    min-height: 700px;
 
     display: flex;
     gap: 30px;
 
-    background: #25212b;
     color: #efefef;
-
-    font-family: 'Golos Text', sans-serif;
+    background: #25212b;
 
     padding: 30px;
 }
@@ -32,6 +33,8 @@
 }
 * {
     scrollbar-color: #efefef0a;
+    user-select: none;
+    font-family: 'Golos Text', sans-serif;
 }
 
 #layout * {
@@ -61,8 +64,15 @@
     background: #efefef0a;
     padding: 5px;
 }
-#details #panel span {
+#details #panel span, .material-icons, #details #history li div span {
     cursor: pointer;
+    user-select: none;
+}
+#details #panel span:first-child {
+    padding-top: 5px;
+}
+#details #panel span:last-child {
+    padding-top: 3px;
 }
 
 #details #history {
@@ -87,7 +97,7 @@
     height: 20px;
     background: rgb(2,0,36);
     background: linear-gradient(0deg, rgba(2,0,36,0) 0%, rgba(37,33,43,1) 83%);
-    top: 10px;
+    top: 5px;
     left: 0px;
 }
 #details #history::before {
@@ -112,7 +122,14 @@
 #details #history li div span {
     display: block;
     width: 50%;
-    padding: 2px;
+    padding: 4px;
+    box-shadow: inset 0 0 0 0px #efefef;
+}
+#details #history li div span:hover {
+    box-shadow: inset 0 0 0 1px #efefef;
+}
+.current:hover {
+    box-shadow: inset 0 0 0 0px #efefef !important;
 }
 #details #history li > span:nth-child(1) {
     opacity: 0.7;
@@ -122,8 +139,8 @@
 }
 
 #details .current {
-    background: #80ecff;
-    color: #25212b;
+    background: #12101481;
+    color: #efef;
     font-weight: bold;
 }
 
@@ -160,33 +177,169 @@
     color: #ff6060;
 }
 
-@media screen and (max-width: 1000px) {
-    #details, #details * {
-        display: none !important;
-    }
+#details #chat {
+    position: relative;
+    height: 250px;
 }
-@media screen and (min-width: 1000px) {
-    .mobile-details {
-        display: none !important;
-    }
+#details #chat h2 {
+    padding-top: 16px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-top: 2px solid #efefef;
+}
+#details #chat i {
+    opacity: 0.7;
+}
+#details #chat i span {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+#details #chat #messages {
+    height: calc(100% - 50px);
+}
+#details #chat #messages p {
+    max-width: 70% !important;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+#details #chat #messages div {
+    display: grid;
+    width: 100%;
+    position: relative;
+    padding: 5px;
+}
+#details #chat #messages .self {
+    justify-self: end;   
+}
+#details #chat #input {
+    display: flex;
+    justify-content: space-between;
+}
+#details #chat #input input {
+    width: calc(100% - 50px);
+}
+#details #chat section {
+    height: calc(100% - 25px);
+    overflow-y: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#details #chat #messages::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background: rgb(2,0,36);
+    background: linear-gradient(0deg, rgba(2,0,36,0) 0%, rgba(37,33,43,1) 83%);
+    top: 85px;
+    left: 0px;
+}
+#details #chat #messages::before {
+    content: "";
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(37,33,43,1) 83%);
+    bottom: -20px;
+    left: 0px;
+}
+
+.mobile #details, .mobile #details * {
+    display: none !important;
+}
+.desktop .mobile-details {
+    display: none !important;
 }
 
 /*
 Chessboard
 */
 
+.br, .bn, .bb, .bq, .bk, .bp, .wr, .wn, .wb, .wq, .wk, .wp {
+    background-size: 100% 100%;
+    cursor:grab;
+}
+
+.br { background-image: url('https://www.chess.com/chess-themes/pieces/neo/150/br.png'); }
+.bn { background-image: url('https://www.chess.com/chess-themes/pieces/neo/150/bn.png'); }
+.bb { background-image: url('https://www.chess.com/chess-themes/pieces/neo/150/bb.png'); }
+.bq { background-image: url('https://www.chess.com/chess-themes/pieces/neo/150/bq.png'); }
+.bk { background-image: url('https://www.chess.com/chess-themes/pieces/neo/150/bk.png'); }
+.bp { background-image: url('https://www.chess.com/chess-themes/pieces/neo/150/bp.png'); }
+
+.wr { background-image: url('https://www.chess.com/chess-themes/pieces/neo/150/wr.png'); }
+.wn { background-image: url('https://www.chess.com/chess-themes/pieces/neo/150/wn.png'); }
+.wb { background-image: url('https://www.chess.com/chess-themes/pieces/neo/150/wb.png'); }
+.wq { background-image: url('https://www.chess.com/chess-themes/pieces/neo/150/wq.png'); }
+.wk { background-image: url('https://www.chess.com/chess-themes/pieces/neo/150/wk.png'); }
+.wp { background-image: url('https://www.chess.com/chess-themes/pieces/neo/150/wp.png'); }
+
 #chessboard {
     width: 100%;
-    max-height: calc(100vh - 60px);
-    aspect-ratio: 1 / 1 !important;
-    min-height: 400px;
-    display: flex;
-    justify-content: center;
-}
-#game {
     height: 100%;
-    max-height: calc(100vh - 60px);
-    min-height: 400px;
-    aspect-ratio: 1 / 1 !important;
-    background: green;
+    display: flex;
+    align-items: center;
 }
+#chessboard #game {
+    width: calc(100% - 70px);
+    height: calc(100% - 70px);
+    max-width: calc(100% - 70px);
+    max-height: calc(100% - 70px);
+
+    position: relative;
+    
+    display: flex;
+    align-items: center;
+}
+#chessboard #game span {
+    margin-left: 40px;
+}
+#chessboard table {
+    aspect-ratio: 1 / 1 !important;
+}
+#chessboard table tr:nth-child(even) td:nth-child(even), table tr:nth-child(odd) td:nth-child(odd) {
+	background: #efefef;
+}
+#chessboard table tr:nth-child(even) td:nth-child(odd), table tr:nth-child(odd) td:nth-child(even){
+	background: #19161b;
+}
+
+td {
+    position: relative;
+}
+td::after {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+}
+td:nth-child(even)::after {
+    color: #19161b;
+}
+td::before {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+tr:nth-child(even) td::before {
+    color: #19161b;
+}
+
+.y1::before {content: "1";}
+.y2::before {content: "2";}
+.y3::before {content: "3";}
+.y4::before {content: "4";}
+.y5::before {content: "5";}
+.y6::before {content: "6";}
+.y7::before {content: "7";}
+.y8::before {content: "8";}
+
+.x1::after {content: "a";}
+.x2::after {content: "b";}
+.x3::after {content: "c";}
+.x4::after {content: "d";}
+.x5::after {content: "e";}
+.x6::after {content: "f";}
+.x7::after {content: "g";}
+.x8::after {content: "h";}
